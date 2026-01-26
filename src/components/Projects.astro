@@ -1,0 +1,182 @@
+---
+const projects = [
+  {
+    title: "E-commerce Platform Modernization",
+    description:
+      "Led the migration of legacy e-commerce infrastructure to a modern headless architecture, resulting in 40% improvement in page load times and 25% increase in conversion rates.",
+    tech: ["Shopify Plus", "React", "Node.js", "GraphQL"],
+  },
+  {
+    title: "Omnichannel Integration",
+    description:
+      "Architected and implemented unified inventory and order management system across online and retail channels, enabling real-time stock visibility and buy-online-pickup-in-store capabilities.",
+    tech: ["Microservices", "API Gateway", "Redis", "PostgreSQL"],
+  },
+  {
+    title: "Personalization Engine",
+    description:
+      "Developed AI-powered product recommendation system that increased average order value by 30% through dynamic, behavior-based personalization.",
+    tech: ["Python", "TensorFlow", "AWS Lambda", "DynamoDB"],
+  },
+];
+---
+
+<section id="projects" class="projects">
+  <div class="container">
+    <h2>Featured Projects</h2>
+
+    <div class="projects-grid">
+      <div class="project-card">
+        <h3>Email Marketing System Overhaul</h3>
+        <p>
+          Rebuilt segmentation strategy, engagement windows, and automation
+          flows from the ground up. Restructured Added to Cart and Welcome flows
+          for better timing and relevance. Established data-driven A/B testing
+          framework to remove opinion-based design decisions.
+        </p>
+        <div class="metrics">
+          <span>+75% conversion rate</span>
+          <span>2× automation revenue</span>
+          <span>+2.4% CTR from testing</span>
+        </div>
+        <div class="tech-tags">
+          <span>Klaviyo</span>
+          <span>Segmentation</span>
+          <span>A/B Testing</span>
+          <span>SMS</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <h3>SEO Category Dominance</h3>
+        <p>
+          Consolidated duplicate product pages, implemented structured data
+          markup, and rebuilt site architecture for search visibility.
+          Established American West Jewelry as a category authority in
+          competitive jewelry terms.
+        </p>
+        <div class="metrics">
+          <span>#2 Google ranking for "turquoise"</span>
+          <span>Google AI Overview featured</span>
+          <span>Category authority established</span>
+        </div>
+        <div class="tech-tags">
+          <span>Technical SEO</span>
+          <span>Schema Markup</span>
+          <span>Shopify</span>
+          <span>JSON-LD</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <h3>Owned Channel Growth Strategy</h3>
+        <p>
+          Optimized signup flows and user experience to drive SMS list growth
+          throughout 2025. Reduced over-reliance on email by building a stronger
+          multi-channel mix for long-term customer retention and revenue
+          diversification.
+        </p>
+        <div class="metrics">
+          <span>Strong SMS acquisition growth</span>
+          <span>Improved channel mix</span>
+          <span>Enhanced signup UX</span>
+        </div>
+        <div class="tech-tags">
+          <span>Klaviyo SMS</span>
+          <span>UX Optimization</span>
+          <span>Conversion Rate</span>
+          <span>Growth Strategy</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .projects {
+    padding: var(--spacing-xl) 0;
+    background-color: #fafafa;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+  }
+
+  .project-card {
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    padding: var(--spacing-md);
+    transition:
+      transform 0.2s,
+      box-shadow 0.2s;
+  }
+
+  .project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .project-card h3 {
+    color: var(--color-text);
+  }
+
+  .project-card p {
+    color: #4b5563;
+    line-height: 1.7;
+  }
+
+  .metrics {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: var(--spacing-sm) 0;
+    padding: var(--spacing-sm) 0;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .metrics span {
+    color: var(--color-primary);
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  .tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+    margin-top: var(--spacing-sm);
+  }
+
+  .tech-tags span {
+    background-color: #e5e7eb;
+    color: var(--color-text);
+    padding: 0.25rem 0.75rem;
+    font-size: 0.875rem;
+    border: 1px solid var(--color-border);
+  }
+
+  .tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+    margin-top: var(--spacing-sm);
+  }
+
+  .tech-tag {
+    background-color: #e5e7eb;
+    color: var(--color-text);
+    padding: 0.25rem 0.75rem;
+    font-size: 0.875rem;
+    border: 1px solid var(--color-border);
+  }
+
+  @media (max-width: 768px) {
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

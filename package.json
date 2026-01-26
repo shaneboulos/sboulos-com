@@ -1,0 +1,22 @@
+{
+  "name": "sboulos-portfolio",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Professional portfolio for Shane Boulos",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "keywords": ["portfolio", "astro"],
+  "author": "Shane Boulos",
+  "license": "MIT",
+  "dependencies": {
+    "astro": "^4.16.18"
+  },
+  "devDependencies": {
+    "@astrojs/cloudflare": "^11.1.0"
+  }
+}

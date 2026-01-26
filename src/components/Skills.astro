@@ -1,0 +1,143 @@
+---
+const skillCategories = [
+  {
+    category: "E-commerce Platforms",
+    skills: [
+      "Shopify Plus",
+      "Magento",
+      "WooCommerce",
+      "BigCommerce",
+      "Salesforce Commerce Cloud",
+    ],
+  },
+  {
+    category: "Technical Leadership",
+    skills: [
+      "Architecture Design",
+      "Team Management",
+      "Agile/Scrum",
+      "Technical Strategy",
+      "DevOps",
+    ],
+  },
+  {
+    category: "Development",
+    skills: [
+      "JavaScript/TypeScript",
+      "React",
+      "Node.js",
+      "Python",
+      "GraphQL",
+      "REST APIs",
+    ],
+  },
+  {
+    category: "Infrastructure & Tools",
+    skills: [
+      "AWS",
+      "Docker",
+      "CI/CD",
+      "Git",
+      "PostgreSQL",
+      "Redis",
+      "Cloudflare",
+    ],
+  },
+];
+---
+
+<section id="skills" class="skills">
+  <div class="container">
+    <h2>Technical Expertise</h2>
+
+    <div class="skills-grid">
+      <div class="skill-category">
+        <h3>E-commerce & Marketing Platforms</h3>
+        <ul>
+          <li>Shopify / Shopify Plus (Liquid, metafields, custom sections)</li>
+          <li>Klaviyo (flows, segmentation, deliverability, SMS)</li>
+          <li>Yotpo (reviews, loyalty integration)</li>
+          <li>Technical SEO (schema markup, rich snippets, JSON-LD)</li>
+          <li>Google Analytics & Search Console</li>
+        </ul>
+      </div>
+
+      <div class="skill-category">
+        <h3>Strategic Leadership</h3>
+        <ul>
+          <li>Cross-functional Team Coordination</li>
+          <li>Vendor & Agency Management (Agital, Yotpo, contractors)</li>
+          <li>Risk Assessment & Strategic Decision-Making</li>
+          <li>Project Management & Documentation</li>
+          <li>Budget & Resource Allocation</li>
+        </ul>
+      </div>
+
+      <div class="skill-category">
+        <h3>Technical Development</h3>
+        <ul>
+          <li>HTML, CSS, JavaScript</li>
+          <li>Astro (static site generation)</li>
+          <li>Git & GitHub (version control, branching)</li>
+          <li>Shopify Theme Customization (Liquid templating)</li>
+        </ul>
+      </div>
+
+      <div class="skill-category">
+        <h3>Systems & Productivity</h3>
+        <ul>
+          <li>Notion (databases, documentation, project planning)</li>
+          <li>Process Documentation & SOP Creation</li>
+          <li>Cloudflare (Pages, Images, DNS)</li>
+          <li>VS Code & Development Workflows</li>
+          <li>A/B Testing & Data Analysis</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .skills {
+    padding: var(--spacing-xl) 0;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+  }
+
+  .skill-category h3 {
+    color: var(--color-accent);
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-xs);
+    border-bottom: 2px solid var(--color-accent);
+  }
+
+  .skill-category ul {
+    list-style: none;
+  }
+
+  .skill-category li {
+    padding: var(--spacing-xs) 0;
+    color: #4b5563;
+    position: relative;
+    padding-left: 1.5rem;
+  }
+
+  .skill-category li::before {
+    content: "▹";
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+  }
+
+  @media (max-width: 768px) {
+    .skills-grid {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-md);
+    }
+  }
+</style>
