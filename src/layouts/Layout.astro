@@ -6,7 +6,7 @@ interface Props {
 
 const {
   title,
-  description = "Professional portfolio of Shane Boulos - Director of E-commerce",
+  description = "Professional portfolio of Shane Boulos - Director of Digital Operations & E-commerce",
 } = Astro.props;
 ---
 
@@ -21,7 +21,7 @@ const {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@400;700&family=Space+Mono:wght@400;700&display=swap"
       rel="stylesheet"
     />
     <meta name="generator" content={Astro.generator} />
@@ -30,11 +30,10 @@ const {
   <body>
     <nav>
       <div class="container">
-        <a href="/" class="logo">Shane Boulos</a>
+        <a href="#" class="logo">SB</a>
         <div class="nav-links">
+          <a href="#work">Work</a>
           <a href="#about">About</a>
-          <a href="#projects">Projects</a>
-          <a href="#skills">Skills</a>
           <a href="#contact">Contact</a>
         </div>
       </div>
@@ -43,26 +42,49 @@ const {
     <footer>
       <div class="container">
         <p>
-          &copy; {new Date().getFullYear()} Shane Boulos. All rights reserved.
+          &copy; {new Date().getFullYear()} Shane Boulos
         </p>
       </div>
     </footer>
+
+    <script>
+      // Add border to nav when scrolled
+      const nav = document.querySelector('nav');
+
+      function handleScroll() {
+        if (window.scrollY > 50) {
+          nav?.classList.add('scrolled');
+        } else {
+          nav?.classList.remove('scrolled');
+        }
+      }
+
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      handleScroll(); // Check initial state
+    </script>
   </body>
 </html>
 
 <style is:global>
   :root {
     --color-bg: #ffffff;
-    --color-text: #1a1a1a;
+    --color-text: #0a0a0a;
+    --color-text-light: #6b7280;
     --color-accent: #2563eb;
-    --color-primary: #2563eb;
     --color-border: #e5e7eb;
     --color-hover: #1e40af;
-    --spacing-xs: 0.5rem;
-    --spacing-sm: 1rem;
-    --spacing-md: 2rem;
-    --spacing-lg: 4rem;
-    --spacing-xl: 6rem;
+
+    /* Editorial spacing - more generous */
+    --spacing-xs: 0.75rem;
+    --spacing-sm: 1.5rem;
+    --spacing-md: 3rem;
+    --spacing-lg: 6rem;
+    --spacing-xl: 9rem;
+    --spacing-2xl: 12rem;
+
+    /* Single column content width */
+    --content-width: 680px;
+    --content-width-narrow: 560px;
   }
 
   * {
@@ -76,38 +98,58 @@ const {
   }
 
   body {
-    font-family: "Space Mono", monospace;
+    font-family: "Anonymous Pro", monospace;
     background-color: var(--color-bg);
     color: var(--color-text);
-    line-height: 1.6;
+    line-height: 1.7;
+    font-size: 16px;
   }
 
+  /* Single-column editorial container */
   .container {
-    max-width: 1200px;
+    max-width: var(--content-width);
     margin: 0 auto;
     padding: 0 var(--spacing-md);
   }
 
+  /* Narrow variant for text-heavy content */
+  .container-narrow {
+    max-width: var(--content-width-narrow);
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+  }
+
+  /* Clean, minimal navigation - sticky */
   nav {
-    border-bottom: 1px solid var(--color-border);
-    padding: var(--spacing-md) 0;
     position: sticky;
     top: 0;
-    background-color: var(--color-bg);
+    padding: var(--spacing-sm) 0;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     z-index: 100;
+    border-bottom: 1px solid transparent;
+    transition: border-bottom-color 0.3s;
+  }
+
+  nav.scrolled {
+    border-bottom-color: var(--color-border);
   }
 
   nav .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-width: 1200px;
   }
 
   .logo {
+    font-family: "Space Mono", monospace;
     font-weight: 700;
-    font-size: 1.25rem;
+    font-size: 1rem;
     color: var(--color-text);
     text-decoration: none;
+    letter-spacing: 0.05em;
   }
 
   .nav-links {
@@ -116,68 +158,119 @@ const {
   }
 
   .nav-links a {
-    color: var(--color-text);
+    font-family: "Space Mono", monospace;
+    color: var(--color-text-light);
     text-decoration: none;
     transition: color 0.2s;
+    font-size: 0.9rem;
   }
 
   .nav-links a:hover {
-    color: var(--color-accent);
+    color: var(--color-text);
   }
 
+  /* Editorial typography */
   h1,
   h2,
-  h3 {
+  h3,
+  h4 {
+    font-family: "Space Mono", monospace;
     font-weight: 700;
-    line-height: 1.2;
+    line-height: 1.1;
+    color: var(--color-text);
   }
 
   h1 {
-    font-size: 3rem;
+    font-size: 3.5rem;
     margin-bottom: var(--spacing-md);
+    letter-spacing: -0.02em;
   }
 
   h2 {
-    font-size: 2rem;
+    font-size: 2.5rem;
     margin-bottom: var(--spacing-md);
+    letter-spacing: -0.01em;
   }
 
   h3 {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  h4 {
+    font-size: 1.25rem;
     margin-bottom: var(--spacing-sm);
   }
 
   p {
     margin-bottom: var(--spacing-sm);
+    color: var(--color-text);
+    line-height: 1.8;
   }
 
+  p.lead {
+    font-size: 1.25rem;
+    line-height: 1.7;
+    color: var(--color-text-light);
+  }
+
+  /* Minimal link styling */
   a {
-    color: var(--color-accent);
-    transition: color 0.2s;
+    color: var(--color-text);
+    text-decoration: underline;
+    text-decoration-color: var(--color-border);
+    text-underline-offset: 0.2em;
+    transition: text-decoration-color 0.2s;
   }
 
   a:hover {
-    color: var(--color-hover);
+    text-decoration-color: var(--color-text);
   }
 
+  /* Editorial sections with generous spacing */
+  section {
+    padding: var(--spacing-xl) 0;
+  }
+
+  /* Clean footer */
   footer {
-    border-top: 1px solid var(--color-border);
     padding: var(--spacing-lg) 0;
-    margin-top: var(--spacing-xl);
-    text-align: center;
+    margin-top: var(--spacing-2xl);
+    border-top: 1px solid var(--color-border);
   }
 
+  footer p {
+    font-size: 0.875rem;
+    color: var(--color-text-light);
+  }
+
+  /* Responsive adjustments */
   @media (max-width: 768px) {
+    :root {
+      --spacing-md: 1.5rem;
+      --spacing-lg: 3rem;
+      --spacing-xl: 4.5rem;
+      --spacing-2xl: 6rem;
+    }
+
     h1 {
-      font-size: 2rem;
+      font-size: 2.5rem;
     }
 
     h2 {
+      font-size: 2rem;
+    }
+
+    h3 {
       font-size: 1.5rem;
     }
 
     .nav-links {
       gap: var(--spacing-sm);
+    }
+
+    p.lead {
+      font-size: 1.125rem;
     }
   }
 </style>
