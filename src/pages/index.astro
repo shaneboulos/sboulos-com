@@ -1017,13 +1017,15 @@ import Layout from '../layouts/Layout.astro';
       }
 
       const distance = targetPosition - startPosition;
-      const duration = 1200; // 1.2 seconds for dramatic effect
+      // Shorter duration on mobile for snappier feel
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      const duration = isMobile ? 800 : 1200;
       let startTime = null;
 
-      // Custom easing: fast start with smooth deceleration
+      // Custom easing: very fast start with smooth deceleration
       function customEasing(t) {
-        // Cubic ease-out: starts fast, smoothly decelerates to landing
-        return 1 - Math.pow(1 - t, 3);
+        // Quadratic ease-out: more aggressive fast start than cubic
+        return 1 - Math.pow(1 - t, 2);
       }
 
       function animation(currentTime) {
