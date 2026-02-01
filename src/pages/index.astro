@@ -827,7 +827,9 @@ import Layout from '../layouts/Layout.astro';
     function getScrollProgress() {
       const scrollY = window.scrollY;
       const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-      return Math.max(0, Math.min(1, scrollY / maxScroll));
+      // Scales from 45% at top to 125% at bottom for extended growth
+      const rawProgress = scrollY / maxScroll;
+      return Math.max(0, Math.min(1.25, rawProgress * 0.80 + 0.45));
     }
 
     // Project 3D point to 2D with perspective, applying both Y-axis and X-axis rotation
@@ -1018,20 +1020,10 @@ import Layout from '../layouts/Layout.astro';
       const duration = 1200; // 1.2 seconds for dramatic effect
       let startTime = null;
 
-      // Custom easing: instant visible movement, rapid acceleration, slow smooth landing
+      // Custom easing: fast start with smooth deceleration
       function customEasing(t) {
-        // Add small initial jump (5%) for instant visual feedback, then smooth easing
-        const initialJump = 0.05;
-
-        if (t < 0.15) {
-          // Linear acceleration in first 15% - covers another 20% of distance
-          const normalized = t / 0.15;
-          return initialJump + 0.2 * normalized;
-        } else {
-          // Very slow, smooth deceleration for the remaining 85% - cubic ease-out
-          const normalized = (t - 0.15) / 0.85;
-          return 0.25 + 0.75 * (1 - Math.pow(1 - normalized, 3));
-        }
+        // Cubic ease-out: starts fast, smoothly decelerates to landing
+        return 1 - Math.pow(1 - t, 3);
       }
 
       function animation(currentTime) {
