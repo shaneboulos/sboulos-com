@@ -364,6 +364,106 @@ import Layout from '../layouts/Layout.astro';
       </div>
     </section>
 
+    <!-- Skills Section -->
+    <section class="skills" id="skills">
+      <div class="container">
+        <h2>Technical Expertise</h2>
+        <div class="skills-grid">
+          <div class="skill-category">
+            <h3>E-commerce Platforms</h3>
+            <ul>
+              <li>Shopify Plus</li>
+              <li>Magento</li>
+              <li>WooCommerce</li>
+              <li>BigCommerce</li>
+              <li>Salesforce Commerce Cloud</li>
+            </ul>
+          </div>
+          <div class="skill-category">
+            <h3>Technical Leadership</h3>
+            <ul>
+              <li>Architecture Design</li>
+              <li>Team Management</li>
+              <li>Agile/Scrum</li>
+              <li>Technical Strategy</li>
+              <li>DevOps</li>
+            </ul>
+          </div>
+          <div class="skill-category">
+            <h3>Development</h3>
+            <ul>
+              <li>JavaScript/TypeScript</li>
+              <li>React</li>
+              <li>Node.js</li>
+              <li>Python</li>
+              <li>GraphQL</li>
+              <li>REST APIs</li>
+            </ul>
+          </div>
+          <div class="skill-category">
+            <h3>Infrastructure & Tools</h3>
+            <ul>
+              <li>AWS</li>
+              <li>Docker</li>
+              <li>CI/CD</li>
+              <li>Git</li>
+              <li>PostgreSQL</li>
+              <li>Redis</li>
+              <li>Cloudflare</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Additional Projects -->
+    <section class="projects" id="projects">
+      <div class="container">
+        <h2>Additional Projects</h2>
+        <div class="projects-grid">
+          <article class="project-card">
+            <h3>E-commerce Platform Modernization</h3>
+            <p>
+              Led the migration of legacy e-commerce infrastructure to a modern headless architecture,
+              resulting in 40% improvement in page load times and 25% increase in conversion rates.
+            </p>
+            <div class="tech-stack">
+              <span class="tech-tag">Shopify Plus</span>
+              <span class="tech-tag">React</span>
+              <span class="tech-tag">Node.js</span>
+              <span class="tech-tag">GraphQL</span>
+            </div>
+          </article>
+          <article class="project-card">
+            <h3>Omnichannel Integration</h3>
+            <p>
+              Architected and implemented unified inventory and order management system across online
+              and retail channels, enabling real-time stock visibility and buy-online-pickup-in-store capabilities.
+            </p>
+            <div class="tech-stack">
+              <span class="tech-tag">Microservices</span>
+              <span class="tech-tag">API Gateway</span>
+              <span class="tech-tag">Redis</span>
+              <span class="tech-tag">PostgreSQL</span>
+            </div>
+          </article>
+          <article class="project-card">
+            <h3>Personalization Engine</h3>
+            <p>
+              Developed AI-powered product recommendation system that increased average order value
+              by 30% through dynamic, behavior-based personalization.
+            </p>
+            <div class="tech-stack">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">TensorFlow</span>
+              <span class="tech-tag">AWS Lambda</span>
+              <span class="tech-tag">DynamoDB</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <!-- Contact Section -->
     <section class="contact" id="contact">
       <div class="container">
@@ -514,6 +614,103 @@ import Layout from '../layouts/Layout.astro';
     line-height: 1.8;
     margin-bottom: var(--spacing-md);
     color: var(--color-text);
+  }
+
+  /* Skills Section */
+  .skills {
+    padding: var(--spacing-2xl) 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .skills h2 {
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+  }
+
+  .skill-category h3 {
+    color: var(--color-text);
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-xs);
+    border-bottom: 2px solid var(--color-border);
+    font-size: 1.125rem;
+  }
+
+  .skill-category ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .skill-category li {
+    padding: var(--spacing-xs) 0;
+    color: var(--color-text-light);
+    position: relative;
+    padding-left: 1.5rem;
+    line-height: 1.6;
+  }
+
+  .skill-category li::before {
+    content: "▹";
+    position: absolute;
+    left: 0;
+    color: var(--color-text);
+  }
+
+  /* Projects Section */
+  .projects {
+    padding: var(--spacing-2xl) 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .projects h2 {
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--spacing-lg);
+  }
+
+  .project-card {
+    border: 1px solid var(--color-border);
+    padding: var(--spacing-lg);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  .project-card h3 {
+    color: var(--color-text);
+    margin-bottom: var(--spacing-md);
+    font-size: 1.25rem;
+  }
+
+  .project-card p {
+    color: var(--color-text-light);
+    line-height: 1.7;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+  }
+
+  .tech-tag {
+    background-color: transparent;
+    color: var(--color-text);
+    padding: 0.25rem 0.75rem;
+    font-size: 0.875rem;
+    border: 1px solid var(--color-border);
   }
 
   /* Contact Section */
