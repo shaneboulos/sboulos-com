@@ -174,12 +174,13 @@ const {
 
   /* Dark mode navigation background */
   [data-theme="dark"] nav {
-    background-color: rgba(28, 30, 31, 0.66);
+    background-color: rgba(28, 30, 31, 0.85);
   }
 
-  /* Dark mode mobile menu */
-  [data-theme="dark"] .nav-links {
-    background-color: rgba(28, 30, 31, 0.98);
+  @media (min-width: 769px) {
+    [data-theme="dark"] nav {
+      background-color: rgba(28, 30, 31, 0.66);
+    }
   }
 
   * {
@@ -224,12 +225,19 @@ const {
     position: sticky;
     top: 0;
     padding: var(--spacing-sm) 0;
-    background-color: rgba(255, 255, 255, 0.75);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.85);
     z-index: 100;
     border-bottom: 1px solid transparent;
     transition: border-bottom-color 0.3s;
+  }
+
+  /* Only use backdrop-filter on desktop to avoid mobile rendering issues */
+  @media (min-width: 769px) {
+    nav {
+      background-color: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
   }
 
   nav.scrolled {
@@ -314,8 +322,6 @@ const {
       width: 250px;
       flex-direction: column;
       background-color: rgba(255, 255, 255, 0.98);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
       padding: 80px 30px 30px;
       gap: var(--spacing-lg);
       transition: right 0.3s ease;
@@ -324,6 +330,11 @@ const {
 
     .nav-links.active {
       right: 0;
+    }
+
+    /* Dark mode mobile menu */
+    [data-theme="dark"] .nav-links {
+      background-color: rgba(28, 30, 31, 0.98);
     }
 
     .nav-links a {
