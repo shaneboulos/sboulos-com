@@ -947,12 +947,12 @@ import Layout from '../layouts/Layout.astro';
   }
 
   /* Dark mode card backgrounds */
-  [data-theme="dark"] .case-study,
-  [data-theme="dark"] .project-card,
-  [data-theme="dark"] .skill-category,
-  [data-theme="dark"] .about-content,
-  [data-theme="dark"] .contact-links-card {
-    background-color: #1C1E1F;
+  :global([data-theme="dark"] .case-study),
+  :global([data-theme="dark"] .project-card),
+  :global([data-theme="dark"] .skill-category),
+  :global([data-theme="dark"] .about-content),
+  :global([data-theme="dark"] .contact-links-card) {
+    background-color: rgba(28, 30, 31, 0.66) !important;
   }
 </style>
 
