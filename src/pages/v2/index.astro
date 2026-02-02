@@ -1,0 +1,331 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Shane Boulos - Digital Operations & E-commerce Leadership">
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <h1>Shane Boulos</h1>
+        <p class="lead">
+          Director of Digital Operations & E-commerce. I build and scale technical teams
+          that drive measurable growth through strategic platform architecture, data-driven
+          optimization, and customer-centric innovation.
+        </p>
+      </div>
+    </section>
+
+    <!-- Work Section -->
+    <section class="work" id="work">
+      <div class="container">
+        <h2>Featured Work</h2>
+
+        <article class="case-study">
+          <div class="case-header">
+            <h3>American West Jewelry</h3>
+            <p class="role">Director of E-commerce & Operations</p>
+          </div>
+
+          <p class="description">
+            Transformed email marketing and SEO performance for a heritage jewelry brand,
+            delivering triple-digit revenue growth through strategic platform migration and
+            data-driven optimization.
+          </p>
+
+          <div class="metrics">
+            <div class="metric">
+              <span class="number">124%</span>
+              <span class="label">Email revenue growth</span>
+            </div>
+            <div class="metric">
+              <span class="number">82%</span>
+              <span class="label">Conversion rate improvement</span>
+            </div>
+            <div class="metric">
+              <span class="number">104%</span>
+              <span class="label">Flow revenue growth</span>
+            </div>
+            <div class="metric">
+              <span class="number">#2</span>
+              <span class="label">Google ranking for "turquoise"</span>
+            </div>
+            <div class="metric">
+              <span class="number">52%</span>
+              <span class="label">Spam complaint reduction</span>
+            </div>
+          </div>
+
+          <div class="approach">
+            <h4>Approach</h4>
+            <p>
+              Led comprehensive platform migration from legacy ESP to Klaviyo, implementing
+              sophisticated segmentation, automated customer journeys, and deliverability
+              best practices. Rebuilt SEO foundation with strategic keyword targeting and
+              technical optimizations.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+      <div class="container">
+        <h2>About</h2>
+        <p>
+          I'm a digital operations and e-commerce leader who bridges technical expertise
+          with strategic business thinking to drive measurable growth.
+        </p>
+        <p>
+          My career has been defined by transforming digital experiences through the
+          intersection of technology, data, and customer-centric design. I've led technical
+          teams, architected scalable platforms, and implemented systems that have driven
+          significant revenue growth for heritage brands and emerging companies alike.
+        </p>
+        <p>
+          My approach combines deep technical knowledge—from platform architecture to data
+          infrastructure—with strategic thinking about customer journeys, market positioning,
+          and organizational capability building.
+        </p>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+      <div class="container">
+        <h2>Get In Touch</h2>
+        <p class="intro">
+          I'm always interested in discussing digital operations strategy, technical leadership
+          opportunities, or innovative e-commerce challenges.
+        </p>
+
+        <div class="contact-methods">
+          <div class="contact-item">
+            <span class="contact-label">Email</span>
+            <a href="mailto:shane@sboulos.com" class="contact-link">shane@sboulos.com</a>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">LinkedIn</span>
+            <a href="https://linkedin.com/in/shaneboulos" target="_blank" rel="noopener noreferrer" class="contact-link">
+              linkedin.com/in/shaneboulos
+            </a>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">GitHub</span>
+            <a href="https://github.com/shaneboulos" target="_blank" rel="noopener noreferrer" class="contact-link">
+              github.com/shaneboulos
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  /* Hero Section */
+  .hero {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-2xl) 0;
+  }
+
+  .hero h1 {
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .lead {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--color-text-light);
+  }
+
+  /* Work Section */
+  .work {
+    padding: var(--spacing-2xl) 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .work h2 {
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .case-study {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .case-header {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .case-header h3 {
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .role {
+    font-size: 1rem;
+    color: var(--color-text-light);
+    margin-bottom: 0;
+  }
+
+  .description {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: var(--spacing-lg);
+    margin: var(--spacing-xl) 0;
+    padding: var(--spacing-lg) 0;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .metric {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .number {
+    font-family: "Space Mono", monospace;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-text);
+    line-height: 1;
+  }
+
+  .label {
+    font-size: 0.875rem;
+    color: var(--color-text-light);
+    line-height: 1.4;
+  }
+
+  .approach {
+    margin-top: var(--spacing-xl);
+  }
+
+  .approach h4 {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .approach p {
+    font-size: 1.0625rem;
+    line-height: 1.8;
+    color: var(--color-text);
+  }
+
+  /* About Section */
+  .about {
+    padding: var(--spacing-2xl) 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .about h2 {
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .about p {
+    font-size: 1.0625rem;
+    line-height: 1.8;
+    margin-bottom: var(--spacing-md);
+    color: var(--color-text);
+  }
+
+  /* Contact Section */
+  .contact {
+    padding: var(--spacing-2xl) 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .contact h2 {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .intro {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .contact-methods {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg) 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .contact-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .contact-label {
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-light);
+  }
+
+  .contact-link {
+    font-size: 1.25rem;
+    color: var(--color-text);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.2s;
+    display: inline-block;
+    width: fit-content;
+  }
+
+  .contact-link:hover {
+    border-bottom-color: var(--color-text);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero {
+      min-height: 60vh;
+      padding: var(--spacing-xl) 0;
+    }
+
+    .lead {
+      font-size: 1rem;
+    }
+
+    .description {
+      font-size: 1rem;
+    }
+
+    .metrics {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-md);
+    }
+
+    .number {
+      font-size: 2rem;
+    }
+
+    .about p,
+    .approach p {
+      font-size: 1rem;
+    }
+
+    .contact-link {
+      font-size: 1.125rem;
+    }
+  }
+</style>

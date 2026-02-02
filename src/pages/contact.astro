@@ -1,0 +1,118 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Contact - Shane Boulos">
+  <main>
+    <section class="contact">
+      <div class="container-narrow">
+        <h1>Get In Touch</h1>
+
+        <p class="intro">
+          I'm always interested in discussing digital operations strategy, technical leadership
+          opportunities, or innovative e-commerce challenges. Feel free to reach out.
+        </p>
+
+        <div class="contact-methods">
+          <div class="contact-item">
+            <h3>Email</h3>
+            <a href="mailto:shane@sboulos.com" class="contact-link">shane@sboulos.com</a>
+          </div>
+
+          <div class="contact-item">
+            <h3>LinkedIn</h3>
+            <a href="https://linkedin.com/in/shaneboulos" target="_blank" rel="noopener noreferrer" class="contact-link">
+              linkedin.com/in/shaneboulos
+            </a>
+          </div>
+
+          <div class="contact-item">
+            <h3>GitHub</h3>
+            <a href="https://github.com/shaneboulos" target="_blank" rel="noopener noreferrer" class="contact-link">
+              github.com/shaneboulos
+            </a>
+          </div>
+        </div>
+
+        <div class="additional">
+          <p>
+            Based in the United States and open to remote, hybrid, and on-site opportunities.
+            Available for director-level roles in digital operations, e-commerce, and technical leadership.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .contact {
+    padding: var(--spacing-2xl) 0;
+    min-height: 60vh;
+  }
+
+  h1 {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .intro {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-xl);
+    max-width: 600px;
+  }
+
+  .contact-methods {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+    padding: var(--spacing-lg) 0;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .contact-item h3 {
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-xs);
+    font-weight: 400;
+  }
+
+  .contact-link {
+    font-size: 1.25rem;
+    color: var(--color-text);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.2s;
+    display: inline-block;
+  }
+
+  .contact-link:hover {
+    border-bottom-color: var(--color-text);
+  }
+
+  .additional {
+    padding-top: var(--spacing-md);
+  }
+
+  .additional p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-text-light);
+  }
+
+  @media (max-width: 768px) {
+    .intro {
+      font-size: 1rem;
+    }
+
+    .contact-link {
+      font-size: 1.125rem;
+      word-break: break-word;
+    }
+  }
+</style>

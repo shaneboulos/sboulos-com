@@ -1,0 +1,305 @@
+---
+import LayoutV1 from './LayoutV1.astro';
+
+const projects = [
+  {
+    title: "E-commerce Platform Modernization",
+    description: "Led the migration of legacy e-commerce infrastructure to a modern headless architecture, resulting in 40% improvement in page load times and 25% increase in conversion rates.",
+    tech: ["Shopify Plus", "React", "Node.js", "GraphQL"]
+  },
+  {
+    title: "Omnichannel Integration",
+    description: "Architected and implemented unified inventory and order management system across online and retail channels, enabling real-time stock visibility and buy-online-pickup-in-store capabilities.",
+    tech: ["Microservices", "API Gateway", "Redis", "PostgreSQL"]
+  },
+  {
+    title: "Personalization Engine",
+    description: "Developed AI-powered product recommendation system that increased average order value by 30% through dynamic, behavior-based personalization.",
+    tech: ["Python", "TensorFlow", "AWS Lambda", "DynamoDB"]
+  }
+];
+
+const skillCategories = [
+  {
+    category: "E-commerce Platforms",
+    skills: ["Shopify Plus", "Magento", "WooCommerce", "BigCommerce", "Salesforce Commerce Cloud"]
+  },
+  {
+    category: "Technical Leadership",
+    skills: ["Architecture Design", "Team Management", "Agile/Scrum", "Technical Strategy", "DevOps"]
+  },
+  {
+    category: "Development",
+    skills: ["JavaScript/TypeScript", "React", "Node.js", "Python", "GraphQL", "REST APIs"]
+  },
+  {
+    category: "Infrastructure & Tools",
+    skills: ["AWS", "Docker", "CI/CD", "Git", "PostgreSQL", "Redis", "Cloudflare"]
+  }
+];
+---
+
+<LayoutV1 title="Shane Boulos - Director of E-commerce & Technical Leader">
+  <main>
+    <!-- Hero Section -->
+    <section class="hero" id="about">
+      <div class="container">
+        <h1>Shane Boulos</h1>
+        <p class="subtitle">Director of E-commerce | Technical Leader</p>
+        <p class="description">
+          Bridging technical expertise with e-commerce strategy to drive digital growth
+          and innovation. Experienced in leading teams, architecting scalable solutions,
+          and transforming customer experiences.
+        </p>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+      <div class="container">
+        <h2>Featured Projects</h2>
+        <div class="projects-grid">
+          {projects.map((project) => (
+            <article class="project-card">
+              <h3>{project.title}</h3>
+              <p>{project.description}</p>
+              <div class="tech-stack">
+                {project.tech.map((tech) => (
+                  <span class="tech-tag">{tech}</span>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills" id="skills">
+      <div class="container">
+        <h2>Technical Expertise</h2>
+        <div class="skills-grid">
+          {skillCategories.map((category) => (
+            <div class="skill-category">
+              <h3>{category.category}</h3>
+              <ul>
+                {category.skills.map((skill) => (
+                  <li>{skill}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+      <div class="container">
+        <h2>Get In Touch</h2>
+        <p class="contact-intro">
+          I'm always interested in discussing e-commerce strategy, technical leadership opportunities,
+          or innovative projects. Feel free to reach out.
+        </p>
+        <div class="contact-methods">
+          <a href="mailto:shane@sboulos.com" class="contact-link">
+            <span class="link-label">Email</span>
+            <span class="link-value">shane@sboulos.com</span>
+          </a>
+          <a href="https://linkedin.com/in/shaneboulos" class="contact-link" target="_blank" rel="noopener noreferrer">
+            <span class="link-label">LinkedIn</span>
+            <span class="link-value">linkedin.com/in/shaneboulos</span>
+          </a>
+          <a href="https://github.com/shaneboulos" class="contact-link" target="_blank" rel="noopener noreferrer">
+            <span class="link-label">GitHub</span>
+            <span class="link-value">github.com/shaneboulos</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</LayoutV1>
+
+<style>
+  /* Hero Section */
+  .hero {
+    padding: var(--spacing-xl) 0;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .subtitle {
+    font-size: 1.5rem;
+    color: var(--color-accent);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .description {
+    font-size: 1.125rem;
+    max-width: 800px;
+    line-height: 1.8;
+  }
+
+  /* Projects Section */
+  .projects {
+    padding: var(--spacing-xl) 0;
+    background-color: #fafafa;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+  }
+
+  .project-card {
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    padding: var(--spacing-md);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .project-card h3 {
+    color: var(--color-text);
+  }
+
+  .project-card p {
+    color: #4b5563;
+    line-height: 1.7;
+  }
+
+  .tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+    margin-top: var(--spacing-sm);
+  }
+
+  .tech-tag {
+    background-color: #e5e7eb;
+    color: var(--color-text);
+    padding: 0.25rem 0.75rem;
+    font-size: 0.875rem;
+    border: 1px solid var(--color-border);
+  }
+
+  /* Skills Section */
+  .skills {
+    padding: var(--spacing-xl) 0;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+  }
+
+  .skill-category h3 {
+    color: var(--color-accent);
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-xs);
+    border-bottom: 2px solid var(--color-accent);
+  }
+
+  .skill-category ul {
+    list-style: none;
+  }
+
+  .skill-category li {
+    padding: var(--spacing-xs) 0;
+    color: #4b5563;
+    position: relative;
+    padding-left: 1.5rem;
+  }
+
+  .skill-category li::before {
+    content: "▹";
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+  }
+
+  /* Contact Section */
+  .contact {
+    padding: var(--spacing-xl) 0;
+    background-color: #fafafa;
+  }
+
+  .contact-intro {
+    font-size: 1.125rem;
+    max-width: 700px;
+    margin-bottom: var(--spacing-lg);
+    color: #4b5563;
+  }
+
+  .contact-methods {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    max-width: 600px;
+  }
+
+  .contact-link {
+    display: flex;
+    flex-direction: column;
+    padding: var(--spacing-md);
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    text-decoration: none;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+
+  .contact-link:hover {
+    transform: translateX(8px);
+    border-color: var(--color-accent);
+  }
+
+  .link-label {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-bottom: 0.25rem;
+  }
+
+  .link-value {
+    font-size: 1.125rem;
+    color: var(--color-accent);
+    font-weight: 700;
+  }
+
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
+    .hero {
+      padding: var(--spacing-lg) 0;
+      min-height: 50vh;
+    }
+
+    .subtitle {
+      font-size: 1.25rem;
+    }
+
+    .description {
+      font-size: 1rem;
+    }
+
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .skills-grid {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-md);
+    }
+
+    .contact-intro {
+      font-size: 1rem;
+    }
+  }
+</style>

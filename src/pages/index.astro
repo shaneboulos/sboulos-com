@@ -534,7 +534,8 @@ import Layout from '../layouts/Layout.astro';
           opportunities, or innovative e-commerce challenges.
         </p>
 
-        <div class="contact-methods">
+        <div class="contact-links-card">
+          <div class="contact-methods">
           <div class="contact-item">
             <span class="contact-label">Email</span>
             <a href="mailto:shane@sboulos.com" class="contact-link">shane@sboulos.com</a>
@@ -551,6 +552,7 @@ import Layout from '../layouts/Layout.astro';
               github.com/shaneboulos
             </a>
           </div>
+        </div>
         </div>
       </div>
     </section>
@@ -583,7 +585,19 @@ import Layout from '../layouts/Layout.astro';
     position: relative;
     z-index: 2;
     padding: var(--spacing-2xl) 0;
-    border-top: 1px solid var(--color-border);
+  }
+
+  .work .container::before,
+  .about .container::before,
+  .skills .container::before,
+  .projects .container::before,
+  .contact .container::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: var(--color-border);
+    margin: calc(var(--spacing-2xl) * -1) 0 var(--spacing-2xl) 0;
   }
 
   .work h2 {
@@ -625,8 +639,6 @@ import Layout from '../layouts/Layout.astro';
     gap: var(--spacing-lg);
     margin: var(--spacing-xl) 0;
     padding: var(--spacing-lg) 0;
-    border-top: 1px solid var(--color-border);
-    border-bottom: 1px solid var(--color-border);
   }
 
   .metric {
@@ -672,7 +684,6 @@ import Layout from '../layouts/Layout.astro';
     position: relative;
     z-index: 2;
     padding: var(--spacing-2xl) 0;
-    border-top: 1px solid var(--color-border);
   }
 
   .about h2 {
@@ -703,7 +714,6 @@ import Layout from '../layouts/Layout.astro';
     position: relative;
     z-index: 2;
     padding: var(--spacing-2xl) 0;
-    border-top: 1px solid var(--color-border);
   }
 
   .skills h2 {
@@ -755,7 +765,6 @@ import Layout from '../layouts/Layout.astro';
     position: relative;
     z-index: 2;
     padding: var(--spacing-2xl) 0;
-    border-top: 1px solid var(--color-border);
   }
 
   .projects h2 {
@@ -772,12 +781,6 @@ import Layout from '../layouts/Layout.astro';
     background-color: rgba(255, 255, 255, 0.66);
     border: 1px solid var(--color-border);
     padding: var(--spacing-lg);
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-
-  .project-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   }
 
   .project-card h3 {
@@ -818,11 +821,18 @@ import Layout from '../layouts/Layout.astro';
     position: relative;
     z-index: 2;
     padding: var(--spacing-2xl) 0 var(--spacing-md) 0;
-    border-top: 1px solid var(--color-border);
   }
 
   .contact h2 {
     margin-bottom: var(--spacing-md);
+  }
+
+  .contact-intro-card,
+  .contact-links-card {
+    background-color: rgba(255, 255, 255, 0.66);
+    border: 1px solid var(--color-border);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
   }
 
   .intro {
@@ -836,8 +846,6 @@ import Layout from '../layouts/Layout.astro';
     display: flex;
     flex-direction: column;
     gap: var(--spacing-md);
-    padding: var(--spacing-lg) 0;
-    border-top: 1px solid var(--color-border);
   }
 
   .contact-item {
@@ -954,7 +962,7 @@ import Layout from '../layouts/Layout.astro';
     let currentRotation = 0;
     let velocity = 0;
     let rotationVelocity = 0;
-    let animationFrameId = null;
+    let animationFrameId: number | null = null;
 
     // Spring physics parameters
     const springStiffness = 0.54;
@@ -1114,13 +1122,13 @@ import Layout from '../layouts/Layout.astro';
     // Generate random rotation speeds for each unique point
     const pointRotationSpeeds = new Map();
 
-    function getPointRotationSpeed(x, y, z) {
+    function getPointRotationSpeed(x: number, y: number, z: number): number {
       const key = `${x},${y},${z}`;
       if (!pointRotationSpeeds.has(key)) {
         // Random speed between 0.3 and 2.0 for each point
         pointRotationSpeeds.set(key, 0.3 + Math.random() * 1.7);
       }
-      return pointRotationSpeeds.get(key);
+      return pointRotationSpeeds.get(key) ?? 1;
     }
 
     function getScrollProgress() {
@@ -1132,7 +1140,7 @@ import Layout from '../layouts/Layout.astro';
     }
 
     // Project 3D point to 2D with perspective, applying both Y-axis and X-axis rotation
-    function project3D(x, y, z, yRotationAngle, xRotationAngle) {
+    function project3D(x: number, y: number, z: number, yRotationAngle: number, xRotationAngle: number) {
       // First apply X-axis rotation (horizontal axis) - different for each point
       const xRad = (xRotationAngle * Math.PI) / 180;
       const xCos = Math.cos(xRad);
@@ -1182,8 +1190,8 @@ import Layout from '../layouts/Layout.astro';
 
         // Calculate growth based on Y position - branches grow top to bottom
         // Map Y position (50-900) to scroll progress (0-1)
-        const yStart = branchData.y1;
-        const yEnd = branchData.y2;
+        const yStart = branchData.y1!;
+        const yEnd = branchData.y2!;
         const yMid = (yStart + yEnd) / 2;
 
         // Branch starts growing when scroll reaches its Y start position
@@ -1196,20 +1204,20 @@ import Layout from '../layouts/Layout.astro';
         ));
 
         // Get rotation speeds for start and end points
-        const startRotationSpeed = getPointRotationSpeed(branchData.x1, branchData.y1, branchData.z1);
-        const endRotationSpeed = getPointRotationSpeed(branchData.x2, branchData.y2, branchData.z2);
+        const startRotationSpeed = getPointRotationSpeed(branchData.x1!, branchData.y1!, branchData.z1!);
+        const endRotationSpeed = getPointRotationSpeed(branchData.x2!, branchData.y2!, branchData.z2!);
 
         // Apply different X-axis rotation to each point based on its rotation speed
         const startXRotation = currentRotation * startRotationSpeed;
         const endXRotation = currentRotation * endRotationSpeed;
 
         // Project start and end points with their individual X-axis rotations
-        const start = project3D(branchData.x1, branchData.y1, branchData.z1, currentRotation, startXRotation);
-        const end = project3D(branchData.x2, branchData.y2, branchData.z2, currentRotation, endXRotation);
+        const start = project3D(branchData.x1!, branchData.y1!, branchData.z1!, currentRotation, startXRotation);
+        const end = project3D(branchData.x2!, branchData.y2!, branchData.z2!, currentRotation, endXRotation);
 
         // Update path
         branch.setAttribute('d', `M ${start.x} ${start.y} L ${end.x} ${end.y}`);
-        branch.setAttribute('stroke-width', branchData.width);
+        branch.setAttribute('stroke-width', branchData.width!.toString());
 
         // Calculate path length and animate stroke to create growth effect
         const pathLength = Math.sqrt(
@@ -1218,8 +1226,8 @@ import Layout from '../layouts/Layout.astro';
 
         // Animate stroke-dashoffset to make branch grow from start to end
         const dashOffset = pathLength * (1 - branchProgress);
-        branch.style.strokeDasharray = pathLength.toString();
-        branch.style.strokeDashoffset = dashOffset.toString();
+        (branch as SVGPathElement).style.strokeDasharray = pathLength.toString();
+        (branch as SVGPathElement).style.strokeDashoffset = dashOffset.toString();
       });
 
       // Update endpoints
@@ -1231,14 +1239,14 @@ import Layout from '../layouts/Layout.astro';
         const endpointProgress = Math.max(0, Math.min(1, (currentProgress - endpointThreshold) / 0.2));
 
         if (endpointProgress > 0) {
-          const rotationSpeed = getPointRotationSpeed(endpointData.x, endpointData.y, endpointData.z);
+          const rotationSpeed = getPointRotationSpeed(endpointData.x!, endpointData.y!, endpointData.z!);
           const xRotation = currentRotation * rotationSpeed;
-          const pos = project3D(endpointData.x, endpointData.y, endpointData.z, currentRotation, xRotation);
-          endpoint.setAttribute('cx', pos.x);
-          endpoint.setAttribute('cy', pos.y);
-          endpoint.style.opacity = endpointProgress.toString();
+          const pos = project3D(endpointData.x!, endpointData.y!, endpointData.z!, currentRotation, xRotation);
+          endpoint.setAttribute('cx', pos.x!.toString());
+          endpoint.setAttribute('cy', pos.y!.toString());
+          (endpoint as SVGCircleElement).style.opacity = endpointProgress.toString();
         } else {
-          endpoint.style.opacity = '0';
+          (endpoint as SVGCircleElement).style.opacity = '0';
         }
       });
 
@@ -1248,18 +1256,18 @@ import Layout from '../layouts/Layout.astro';
         if (!branchData) return;
 
         // Calculate if this junction should be visible based on Y position
-        const yEnd = branchData.y2;
+        const yEnd = branchData.y2!;
         const endThreshold = (yEnd - 50) / 850;
 
         // Position at the end point of the branch with its rotation speed
-        const rotationSpeed = getPointRotationSpeed(branchData.x2, branchData.y2, branchData.z2);
+        const rotationSpeed = getPointRotationSpeed(branchData.x2!, branchData.y2!, branchData.z2!);
         const xRotation = currentRotation * rotationSpeed;
-        const pos = project3D(branchData.x2, branchData.y2, branchData.z2, currentRotation, xRotation);
-        junction.setAttribute('cx', pos.x);
-        junction.setAttribute('cy', pos.y);
+        const pos = project3D(branchData.x2!, branchData.y2!, branchData.z2!, currentRotation, xRotation);
+        junction.setAttribute('cx', pos.x.toString());
+        junction.setAttribute('cy', pos.y.toString());
 
         // Junction appears when scroll reaches its Y position
-        junction.style.opacity = currentProgress >= endThreshold ? '0.6' : '0';
+        (junction as SVGCircleElement).style.opacity = currentProgress >= endThreshold ? '0.6' : '0';
       });
 
       // Continue animation if there's still movement
@@ -1301,10 +1309,11 @@ import Layout from '../layouts/Layout.astro';
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       e.preventDefault();
-      const targetId = this.getAttribute('href');
+      const targetId = anchor.getAttribute('href');
+      if (!targetId) return;
 
       const startPosition = window.pageYOffset;
-      let targetPosition;
+      let targetPosition: number;
 
       // Handle scroll to top for "#" or find target element for other anchors
       if (targetId === '#') {
@@ -1319,15 +1328,15 @@ import Layout from '../layouts/Layout.astro';
       // Shorter duration on mobile for snappier feel
       const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
       const duration = isMobile ? 800 : 1200;
-      let startTime = null;
+      let startTime: number | null = null;
 
       // Custom easing: very fast start with smooth deceleration
-      function customEasing(t) {
+      function customEasing(t: number) {
         // Quadratic ease-out: more aggressive fast start than cubic
         return 1 - Math.pow(1 - t, 2);
       }
 
-      function animation(currentTime) {
+      function animation(currentTime: number) {
         if (startTime === null) startTime = currentTime;
         const timeElapsed = currentTime - startTime;
         const progress = Math.min(timeElapsed / duration, 1);

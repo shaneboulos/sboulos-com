@@ -1,0 +1,143 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Work - Shane Boulos">
+  <main>
+    <section>
+      <div class="container">
+        <h1>Selected Work</h1>
+
+        <article class="case-study-preview">
+          <div class="preview-header">
+            <h2><a href="/work/awj">American West Jewelry</a></h2>
+            <p class="role">Director of E-commerce & Operations</p>
+          </div>
+
+          <p class="description">
+            Transformed email marketing and SEO performance for a heritage jewelry brand,
+            delivering 124% revenue growth through strategic platform migration and
+            data-driven optimization.
+          </p>
+
+          <div class="metrics-preview">
+            <div class="metric">
+              <span class="number">124%</span>
+              <span class="label">Email revenue growth</span>
+            </div>
+            <div class="metric">
+              <span class="number">82%</span>
+              <span class="label">Conversion rate improvement</span>
+            </div>
+            <div class="metric">
+              <span class="number">#2</span>
+              <span class="label">Google ranking for "turquoise"</span>
+            </div>
+          </div>
+
+          <a href="/work/awj" class="read-more">Read case study →</a>
+        </article>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  section {
+    padding: var(--spacing-2xl) 0;
+  }
+
+  h1 {
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .case-study-preview {
+    padding: var(--spacing-lg) 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .preview-header {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .preview-header h2 {
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .preview-header h2 a {
+    color: var(--color-text);
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  .preview-header h2 a:hover {
+    opacity: 0.7;
+  }
+
+  .role {
+    font-size: 1rem;
+    color: var(--color-text-light);
+    margin-bottom: 0;
+  }
+
+  .description {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-md);
+    max-width: 600px;
+  }
+
+  .metrics-preview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: var(--spacing-md);
+    margin: var(--spacing-lg) 0;
+    padding: var(--spacing-md) 0;
+  }
+
+  .metric {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-text);
+    line-height: 1;
+  }
+
+  .label {
+    font-size: 0.875rem;
+    color: var(--color-text-light);
+    line-height: 1.4;
+  }
+
+  .read-more {
+    display: inline-block;
+    margin-top: var(--spacing-md);
+    font-size: 1rem;
+    color: var(--color-text);
+    text-decoration: none;
+    border-bottom: 2px solid var(--color-text);
+    padding-bottom: 0.25rem;
+    transition: opacity 0.2s;
+  }
+
+  .read-more:hover {
+    opacity: 0.7;
+  }
+
+  @media (max-width: 768px) {
+    .metrics-preview {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-sm);
+    }
+
+    .number {
+      font-size: 2rem;
+    }
+  }
+</style>
