@@ -17,7 +17,7 @@ const {
     <meta name="description" content={description} />
     <meta name="robots" content="noindex, nofollow" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link id="favicon" rel="icon" type="image/svg+xml" href="/favicon-light.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -115,10 +115,19 @@ const {
       // Dark mode toggle
       const themeToggle = document.getElementById("theme-toggle");
       const html = document.documentElement;
+      const favicon = document.getElementById("favicon") as HTMLLinkElement;
+
+      // Function to update favicon based on theme
+      function updateFavicon(theme: string) {
+        if (favicon) {
+          favicon.href = theme === "dark" ? "/favicon-dark.svg" : "/favicon-light.svg";
+        }
+      }
 
       // Check for saved theme preference or default to light mode
       const savedTheme = localStorage.getItem("theme") || "light";
       html.setAttribute("data-theme", savedTheme);
+      updateFavicon(savedTheme);
 
       themeToggle?.addEventListener("click", () => {
         const currentTheme = html.getAttribute("data-theme");
@@ -126,6 +135,7 @@ const {
 
         html.setAttribute("data-theme", newTheme);
         localStorage.setItem("theme", newTheme);
+        updateFavicon(newTheme);
       });
     </script>
   </body>
@@ -513,8 +523,13 @@ const {
     #theme-toggle {
       bottom: 1.5rem;
       right: 1.5rem;
-      width: 44px;
-      height: 44px;
+      width: 58px;
+      height: 58px;
+    }
+
+    #theme-toggle svg {
+      width: 24px;
+      height: 24px;
     }
   }
 </style>

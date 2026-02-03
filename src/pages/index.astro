@@ -491,8 +491,7 @@ import Layout from '../layouts/Layout.astro';
             <p>
               Built and operated specialized Shopify-based e-commerce business serving the modular
               synthesis community. Managed complete technical stack, vendor partnerships with 20+
-              manufacturers, and all digital marketing. Closed strategically to focus on digital
-              operations career.
+              manufacturers, and all digital marketing.
             </p>
             <div class="tech-stack">
               <span class="tech-tag">Shopify</span>
@@ -506,7 +505,7 @@ import Layout from '../layouts/Layout.astro';
             <p>
               Managed creative operations for jewelry manufacturer. Redesigned websites, created
               bespoke CMSes, photographed and retouched jewelry for major retailers, managed in-house
-              design team, and coordinated with external agencies. Deep jewelry industry experience.
+              design team, and coordinated with external agencies. Gained comprehensive jewelry industry experience.
             </p>
             <div class="tech-stack">
               <span class="tech-tag">Web Design</span>
@@ -877,12 +876,17 @@ import Layout from '../layouts/Layout.astro';
     width: 100vw;
     height: 100vh;
     transform: translateX(-50%);
-    opacity: 0.16;
+    opacity: 0.20;
     color: var(--color-text);
     pointer-events: none;
     z-index: 1;
     perspective: 1000px;
     transform-style: preserve-3d;
+  }
+
+  /* Brighter/more visible in dark mode */
+  :global([data-theme="dark"]) .branch-svg {
+    opacity: 0.25;
   }
 
   .branch-svg .branch {
