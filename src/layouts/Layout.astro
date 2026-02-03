@@ -417,6 +417,13 @@ const {
     color: var(--color-text-light);
   }
 
+  /* Extra bottom padding on mobile to prevent cutoff on Chrome iOS */
+  @media (max-width: 768px) {
+    footer {
+      padding-bottom: calc(var(--spacing-lg) + 2rem);
+    }
+  }
+
   /* Responsive adjustments */
   @media (max-width: 768px) {
     :root {
