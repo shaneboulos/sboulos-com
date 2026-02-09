@@ -1192,10 +1192,10 @@ import Layout from '../layouts/Layout.astro';
       // 1.0× at focus → up to 1.6× at max distance
       const widthScale = Math.min(1.6, 1.0 + distance / 500);
 
-      // Node radius scale — in-focus nodes swell to 2× base, OOF shrink to 0.5×
-      // Normalized from opacity range (0.09–1.0) → radius range (0.5–2.0)
+      // Node radius scale — in-focus nodes swell to 1.5× base, OOF shrink to 0.5×
+      // Normalized from opacity range (0.09–1.0) → radius range (0.5–1.5)
       const normalized = (opacity - 0.09) / 0.91;
-      const radiusScale = 0.5 + normalized * 1.5;
+      const radiusScale = 0.5 + normalized * 1.0;
 
       return { opacity, widthScale, radiusScale };
     }
