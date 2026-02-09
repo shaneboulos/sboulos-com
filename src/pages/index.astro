@@ -1181,7 +1181,7 @@ import Layout from '../layouts/Layout.astro';
     // Uses only opacity falloff + stroke bloom — no SVG filters, so zero GPU overhead.
     const DOF_FOCAL_Z = 0;
 
-    function getDofLevel(depth: number): { opacity: number; widthScale: number } {
+    function getDofLevel(depth: number): { opacity: number; widthScale: number; radiusScale: number } {
       const distance = Math.abs(depth - DOF_FOCAL_Z);
 
       // Opacity falloff — smooth continuous ramp, no discrete tiers
@@ -1192,7 +1192,12 @@ import Layout from '../layouts/Layout.astro';
       // 1.0× at focus → up to 1.6× at max distance
       const widthScale = Math.min(1.6, 1.0 + distance / 500);
 
-      return { opacity, widthScale };
+      // Node radius scale — in-focus nodes swell to 2× base, OOF shrink to 0.5×
+      // Normalized from opacity range (0.09–1.0) → radius range (0.5–2.0)
+      const normalized = (opacity - 0.09) / 0.91;
+      const radiusScale = 0.5 + normalized * 1.5;
+
+      return { opacity, widthScale, radiusScale };
     }
 
     function springAnimation() {
@@ -1281,8 +1286,9 @@ import Layout from '../layouts/Layout.astro';
           endpoint.setAttribute('cx', pos.x!.toString());
           endpoint.setAttribute('cy', pos.y!.toString());
 
-          // DoF on endpoints
+          // DoF on endpoints — opacity + radius scale for depth perception
           const dof = getDofLevel(pos.depth);
+          endpoint.setAttribute('r', (4 * dof.radiusScale).toString());
           (endpoint as SVGCircleElement).style.opacity = (endpointProgress * dof.opacity).toString();
         } else {
           (endpoint as SVGCircleElement).style.opacity = '0';
@@ -1305,8 +1311,9 @@ import Layout from '../layouts/Layout.astro';
         junction.setAttribute('cx', pos.x.toString());
         junction.setAttribute('cy', pos.y.toString());
 
-        // DoF on junctions
+        // DoF on junctions — opacity + radius scale for depth perception
         const dof = getDofLevel(pos.depth);
+        junction.setAttribute('r', (6 * dof.radiusScale).toString());
 
         // Junction appears when scroll reaches its Y position (base 0.6 × DoF opacity)
         (junction as SVGCircleElement).style.opacity = currentProgress >= endThreshold ? (0.6 * dof.opacity).toString() : '0';
