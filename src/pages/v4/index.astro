@@ -1,5 +1,5 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from './LayoutV4.astro';
 ---
 
 <Layout title="Shane Boulos - Digital Operations & E-commerce Leadership">
@@ -876,7 +876,7 @@ import Layout from '../layouts/Layout.astro';
     width: 100vw;
     height: 100vh;
     transform: translateX(-50%);
-    opacity: 0.35;
+    opacity: 0.20;
     color: var(--color-text);
     pointer-events: none;
     z-index: 1;
@@ -886,7 +886,7 @@ import Layout from '../layouts/Layout.astro';
 
   /* Brighter/more visible in dark mode */
   :global([data-theme="dark"]) .branch-svg {
-    opacity: 0.40;
+    opacity: 0.25;
   }
 
   .branch-svg .branch {
@@ -1175,26 +1175,6 @@ import Layout from '../layouts/Layout.astro';
       };
     }
 
-    // Depth of Field simulation — 50mm f/1.2 on full-frame (lightweight version)
-    // Focal plane sits at Z=0 (center of rotation). As branches rotate through
-    // 3D space, they drift in and out of this razor-thin focal plane.
-    // Uses only opacity falloff + stroke bloom — no SVG filters, so zero GPU overhead.
-    const DOF_FOCAL_Z = 0;
-
-    function getDofLevel(depth: number): { opacity: number; widthScale: number } {
-      const distance = Math.abs(depth - DOF_FOCAL_Z);
-
-      // Opacity falloff — smooth continuous ramp, no discrete tiers
-      // In-focus (distance≈0): full opacity → far OOF: dims to 0.09
-      const opacity = Math.max(0.09, 1.0 - distance / 420);
-
-      // Stroke bloom — defocused highlights spread, thickening the stroke
-      // 1.0× at focus → up to 1.6× at max distance
-      const widthScale = Math.min(1.6, 1.0 + distance / 500);
-
-      return { opacity, widthScale };
-    }
-
     function springAnimation() {
       // Spring physics for scroll progress
       const delta = targetProgress - currentProgress;
@@ -1242,18 +1222,9 @@ import Layout from '../layouts/Layout.astro';
         const start = project3D(branchData.x1!, branchData.y1!, branchData.z1!, currentRotation, startXRotation);
         const end = project3D(branchData.x2!, branchData.y2!, branchData.z2!, currentRotation, endXRotation);
 
-        // Depth of Field — average Z-depth of this branch's projected endpoints
-        const avgDepth = (start.depth + end.depth) / 2;
-        const dof = getDofLevel(avgDepth);
-
-        // Update path geometry
+        // Update path
         branch.setAttribute('d', `M ${start.x} ${start.y} L ${end.x} ${end.y}`);
-
-        // Stroke width with DoF bloom (base width × bokeh spread)
-        branch.setAttribute('stroke-width', (branchData.width! * dof.widthScale).toString());
-
-        // Opacity: base 0.4 × DoF transmission falloff
-        (branch as SVGPathElement).style.opacity = (0.4 * dof.opacity).toString();
+        branch.setAttribute('stroke-width', branchData.width!.toString());
 
         // Calculate path length and animate stroke to create growth effect
         const pathLength = Math.sqrt(
@@ -1280,10 +1251,7 @@ import Layout from '../layouts/Layout.astro';
           const pos = project3D(endpointData.x!, endpointData.y!, endpointData.z!, currentRotation, xRotation);
           endpoint.setAttribute('cx', pos.x!.toString());
           endpoint.setAttribute('cy', pos.y!.toString());
-
-          // DoF on endpoints
-          const dof = getDofLevel(pos.depth);
-          (endpoint as SVGCircleElement).style.opacity = (endpointProgress * dof.opacity).toString();
+          (endpoint as SVGCircleElement).style.opacity = endpointProgress.toString();
         } else {
           (endpoint as SVGCircleElement).style.opacity = '0';
         }
@@ -1305,11 +1273,8 @@ import Layout from '../layouts/Layout.astro';
         junction.setAttribute('cx', pos.x.toString());
         junction.setAttribute('cy', pos.y.toString());
 
-        // DoF on junctions
-        const dof = getDofLevel(pos.depth);
-
-        // Junction appears when scroll reaches its Y position (base 0.6 × DoF opacity)
-        (junction as SVGCircleElement).style.opacity = currentProgress >= endThreshold ? (0.6 * dof.opacity).toString() : '0';
+        // Junction appears when scroll reaches its Y position
+        (junction as SVGCircleElement).style.opacity = currentProgress >= endThreshold ? '0.6' : '0';
       });
 
       // Continue animation if there's still movement
