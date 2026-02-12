@@ -1280,10 +1280,11 @@ import Layout from '../layouts/Layout.astro';
           endpoint.setAttribute('cx', pos.x!.toString());
           endpoint.setAttribute('cy', pos.y!.toString());
 
-          // DoF on endpoints — opacity + radius scale for depth perception
+          // DoF on endpoints — radius scale for depth, full opacity when in focus
           const dof = getDofLevel(pos.depth);
           endpoint.setAttribute('r', (4 * dof.radiusScale).toString());
-          (endpoint as SVGCircleElement).style.opacity = (endpointProgress * dof.opacity).toString();
+          const normalized = (dof.radiusScale - 0.5) / 1.0; // 0 at min scale → 1 at max scale
+          (endpoint as SVGCircleElement).style.opacity = (endpointProgress * normalized).toString();
         } else {
           (endpoint as SVGCircleElement).style.opacity = '0';
         }
@@ -1370,13 +1371,13 @@ import Layout from '../layouts/Layout.astro';
       const distance = targetPosition - startPosition;
       // Shorter duration on mobile for snappier feel
       const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-      const duration = isMobile ? 800 : 1200;
+      const duration = isMobile ? 1000 : 1600;
       let startTime: number | null = null;
 
-      // Custom easing: very fast start with smooth deceleration
+      // Custom easing: fast initial launch with long iOS-style deceleration tail
       function customEasing(t: number) {
-        // Quadratic ease-out: more aggressive fast start than cubic
-        return 1 - Math.pow(1 - t, 2);
+        // Quartic ease-out: aggressive start, long coast to stop
+        return 1 - Math.pow(1 - t, 4);
       }
 
       function animation(currentTime: number) {
