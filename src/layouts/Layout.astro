@@ -15,7 +15,6 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
-    <meta name="robots" content="noindex, nofollow" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link id="favicon" rel="icon" type="image/svg+xml" href="/favicon-light.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -123,8 +122,14 @@ const {
         }
       }
 
-      // Check for saved theme preference or default to light mode
-      const savedTheme = localStorage.getItem("theme") || "light";
+      // Determine default theme based on time of day (dark after 7pm, light after 6am)
+      function getTimeBasedTheme(): string {
+        const hour = new Date().getHours();
+        return (hour >= 19 || hour < 6) ? "dark" : "light";
+      }
+
+      // Use manual preference if set, otherwise fall back to time-of-day
+      const savedTheme = localStorage.getItem("theme") || getTimeBasedTheme();
       html.setAttribute("data-theme", savedTheme);
       updateFavicon(savedTheme);
 
