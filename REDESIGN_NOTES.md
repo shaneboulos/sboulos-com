@@ -1,12 +1,12 @@
 # Portfolio Redesign Summary
 
-## Original Version Available
+## Archived Versions Removed
 
-The original portfolio design is preserved at `/v1` for reference. You can view it anytime:
-- Locally: `http://localhost:4321/v1`
-- When deployed: `https://sboulos.com/v1`
+The archived design versions (`/v1` through `/v4`) were removed on October 15, 2026.
+- Old `/v1` to `/v4` links now 301-redirect to the home page (see `public/_redirects`).
+- The previous designs remain available in git history.
 
-This lets you compare both approaches side-by-side.
+To compare against an earlier design, check out a commit before the removal.
 
 ---
 
