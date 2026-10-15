@@ -1,3 +1,8 @@
+/about     /#about    301
+/contact   /#contact  301
+/work      /#work     301
+/work/*    /#work     301
+
 # Archived design versions were removed; send old links home.
 /v1    /  301
 /v1/*  /  301
